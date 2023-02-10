@@ -9,7 +9,7 @@ env:
   #PAGODA_CONSOLE_URL: https://developer-console-api-test-k2zt32g7mq-ue.a.run.app
   PAGODA_CONSOLE_URL: https://near-dev-api-jl.ngrok.io
   CONTRACT_WASM_PATH: contract/build/hello_near.wasm
-  FRONTEND_PACKAGE_NAME: Boilerplate JS Frontend
+  FRONTEND_PACKAGE_NAME: Boilerplate Frontend
   
 jobs:
   build-and-deploy:
