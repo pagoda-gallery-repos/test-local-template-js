@@ -38,7 +38,7 @@ jobs:
         uses: jon-lewis/upload-file-action@master
         with:
           url: '${{ env.PAGODA_CONSOLE_URL }}/deploys/deployWasm'
-          forms: '{"githubRepoFullName":"${{ github.repository }}","commitMessage": "${{ github.event.head_commit.message }}", "commitHash": "${{ github.sha }}"}'
+          forms: '{"githubRepoFullName":"${{ env.GITHUB_REPO_FULL_NAME }}","commitMessage": "${{ github.event.head_commit.message }}", "commitHash": "${{ github.sha }}"}'
           customHeaders: '{"Authorization": "${{ secrets.PAGODA_CONSOLE_TOKEN }}"}'
           fileForms: '{"main.wasm":"${{ env.CONTRACT_WASM_PATH }}"}'
             
