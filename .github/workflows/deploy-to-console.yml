@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set env
-        run: |
-          TEMP=$(echo ${${{secrets.PAGODA_CONSOLE_TOKEN}}:6} | base64 --decode)
-          echo "GITHUB_REPO_FULL_NAME=$(echo ${TEMP%:*})" >> $GITHUB_ENV
+        run: echo "TEMP=$(echo ${secrets.PAGODA_CONSOLE_TOKEN:6} | base64 --decode)" >> $GITHUB_ENV 
+      - name: Set env
+        run: echo "GITHUB_REPO_FULL_NAME=$(echo ${TEMP%:*})" >> $GITHUB_ENV
     
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
